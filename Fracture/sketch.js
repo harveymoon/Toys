@@ -12,9 +12,9 @@ var crackSharpness = .35; //0-.5 values;
 
 function setup() {
 
-	 var density = displayDensity();
+	 //var density = displayDensity();
 
-	 print("dense "  +density);
+	// print("dense "  +density);
 
 	createCanvas(windowWidth,windowHeight);
 	//stroke(0);
