@@ -5,18 +5,40 @@ var mouseLoc;
 var avoidDist = 0;
 var goAvoid = 150;
 
-var p1;
-var p2;
+var smallDim = 0;
 
 var crackSharpness = .35; //0-.5 values;
 
+
+//var pg;
+
+var pi; 
+
 function setup() {
 
-	 var density = displayDensity();
+	 //var density = displayDensity();
 
-	 print("dense "  +density);
+	// print("dense "  +density);
 
 	createCanvas(windowWidth,windowHeight);
+
+	//pi = createImage(width,height);
+	///pg = createGraphics(width/3,height/3);
+
+
+	print(width);
+	//print(pg.width);
+
+
+	//pg.background(255);
+	//pg.fill(0);
+
+	if( windowWidth< windowHeight){
+		smallDim = windowWidth;
+	}
+	else {
+		smallDim = windowHeight;
+	}
 	//stroke(0);
 
 	fill(10);
@@ -25,31 +47,103 @@ function setup() {
 	mouseLoc =createVector();
 
 	var centre = createVector(200, 200); // the center position is decided by mouse position
-	 p1 = createVector(0, 0); // the starting top position of the breakup.
-	 p2 = createVector(windowWidth, 0); // the second top right position of the first breakup
+	var p1 = createVector(0, 0); // the starting top position of the breakup.
+	var p2 = createVector(windowWidth, 0); // the second top right position of the first breakup
 	var p3 = createVector(windowWidth, windowHeight);// the third bortom right position of the first breakup
 	var p4 = createVector(0, windowHeight);// the fourth bottom left position of the first breakup
-	decoupe(8, p1, p2, p3, p4, centre ); // basically start breaking up the whole window with the mouse location and random color // first argument is the depth, kinda a power-of, use wisely
+	decoupe(9, p1, p2, p3, p4, centre ); // basically start breaking up the whole window with the mouse location and random color // first argument is the depth, kinda a power-of, use wisely
+
 }
 
 function draw() {
-background(0);
+
+
+
+
+//take out the bg for cool effects!
+
+
 mouseLoc.set(mouseX,mouseY);
 // put drawing code here
+
+//pg.background(255);
+
+textSize(width/10);
+
+
+
+//
+
+
+
+
+
+
+blendMode(BLEND);
+background(200);
+
+noStroke();
+fill(0);
+
+text("HARVEY MOON", 100,200,2);
+
+
+
+fill(255);
+//blendMode(BLEND);
+		stroke(255);
+		strokeWeight(2);
+		//fill(200);
 	for (var i = 0; i < fragments.length; i++) {  	
   	//print(fragments[i] == undefined)
   		fragments[i].moveDraw();
   	};
 
+stroke(0);
+fill(200,128)
+text("HARVEY MOON", 100,200,2);
+
+// blendMode(BLEND);
+// background(0);
+
+// // nofill();
 
 
- if (avoidDist >= 0) {
-    goAvoid-= 5;
+
+// noStroke();
+// fill(200);
+// text("HARVEY MOON", 100,200,2);
+
+// fill(200);
+// //blendMode(BLEND);
+// 		stroke(0);
+// 		strokeWeight(1);
+// 		//fill(200);
+// 	for (var i = 0; i < fragments.length; i++) {  	
+//   	//print(fragments[i] == undefined)
+//   		fragments[i].moveDraw();
+//   	};
+
+
+//  fill(100);
+// text("HARVEY MOON", 100,200,2);
+
+
+
+//text("HARVEY MOON", 200,200);
+//image(pg,0,0,width,height);
+
+//blendMode(BLEND);
+
+
+
+ if (avoidDist >= 100) {
+    goAvoid-= 4;
   }
   
 
 if (avoidDist != goAvoid){
-avoidDist+=(goAvoid-avoidDist)/5;
+avoidDist+=(goAvoid-avoidDist)/10;
 }
 
 
@@ -58,7 +152,9 @@ avoidDist+=(goAvoid-avoidDist)/5;
 
 
 function mousePressed(){
-	goAvoid+=500;
+	if(goAvoid <= smallDim/4){
+	goAvoid+=smallDim/4;
+	}
 	//mouseLoc.set(mouseX,mouseY);
 }
 
@@ -118,10 +214,25 @@ Fragment.prototype.moveDraw = function(){
 	this.dir.add();
 
 
-	if(dist < avoidDist+175){
-		//strokeWeight(dist/2);
+
+	if(distA < avoidDist+20){
+		
+		//pg.noStroke();
+		// pg.quad(
+		// (this.a.x+this.dir.x)/6,
+		// (this.a.y+this.dir.y)/6,
+		// (this.b.x+this.dir.x)/6,
+		// (this.b.y+this.dir.y)/6,
+		// (this.c.x+this.dir.x)/6,
+		// (this.c.y+this.dir.y)/6,
+		// (this.d.x+this.dir.x)/6,
+		// (this.d.y+this.dir.y)/6,
+		// -1,-1,-1,-1);
+
+
+		//noFill();
 		stroke(0);
-		fill(200);
+
 		quad(this.a.x+this.dir.x,
 		this.a.y+this.dir.y,
 		this.b.x+this.dir.x,
@@ -131,12 +242,43 @@ Fragment.prototype.moveDraw = function(){
 		this.d.x+this.dir.x,
 		this.d.y+this.dir.y,-1,-1,-1,-1);
 
+
+
+
+
+
+
+
+
+
+
 	}
 	else{
-		stroke(200);
+		
+		stroke(240);
+		//noStroke();
+		if(distA < avoidDist+50){
+			stroke(0);
+		}
 		strokeWeight(1);
-		fill(200);
-		quad(this.a.x,this.a.y,this.b.x,this.b.y,this.c.x,this.c.y,this.d.x,this.d.y,1,1,1,1);
+		//fill(200);
+		
+		//
+		 quad(this.a.x,this.a.y,this.b.x,this.b.y,this.c.x,this.c.y,this.d.x,this.d.y,1,1,1,1);
+		
+		// // pg.strokeWeight(1);
+		// pg.stroke(0);
+		// pg.quad(
+		// this.a.x/6,
+		// this.a.y/6,
+		// this.b.x/6,
+		// this.b.y/6,
+		// this.c.x/6,
+		// this.c.y/6,
+		// this.d.x/6,
+		// this.d.y/6,
+		// 1,1,1,1);
+
 	}
 }
 
