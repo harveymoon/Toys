@@ -10,7 +10,7 @@ var smallDim = 0;
 var crackSharpness = .35; //0-.5 values;
 
 
-var pg;
+//var pg;
 
 var pi; 
 
@@ -23,15 +23,15 @@ function setup() {
 	createCanvas(windowWidth,windowHeight);
 
 	//pi = createImage(width,height);
-	pg = createGraphics(width/2,height/2);
+	///pg = createGraphics(width/3,height/3);
 
 
 	print(width);
-	print(pg.width);
+	//print(pg.width);
 
 
-	pg.background(255);
-	pg.fill(0);
+	//pg.background(255);
+	//pg.fill(0);
 
 	if( windowWidth< windowHeight){
 		smallDim = windowWidth;
@@ -52,42 +52,89 @@ function setup() {
 	var p3 = createVector(windowWidth, windowHeight);// the third bortom right position of the first breakup
 	var p4 = createVector(0, windowHeight);// the fourth bottom left position of the first breakup
 	decoupe(9, p1, p2, p3, p4, centre ); // basically start breaking up the whole window with the mouse location and random color // first argument is the depth, kinda a power-of, use wisely
+
 }
 
 function draw() {
 
 
 
-background(255);
 
+//take out the bg for cool effects!
 
 
 mouseLoc.set(mouseX,mouseY);
 // put drawing code here
 
-pg.background(255);
+//pg.background(255);
 
 textSize(width/10);
 
 
 
+//
 
 
+
+
+
+
+blendMode(BLEND);
+background(200);
+
+noStroke();
+fill(0);
+
+text("HARVEY MOON", 100,200,2);
+
+
+
+fill(255);
+//blendMode(BLEND);
+		stroke(255);
+		strokeWeight(2);
+		//fill(200);
 	for (var i = 0; i < fragments.length; i++) {  	
   	//print(fragments[i] == undefined)
   		fragments[i].moveDraw();
   	};
 
+stroke(0);
+fill(200,128)
+text("HARVEY MOON", 100,200,2);
+
+// blendMode(BLEND);
+// background(0);
+
+// // nofill();
 
 
-noStroke();
-text("HARVEY MOON", 200,200);
-blendMode(DIFFERENCE);
-fill(255);
-noStroke();
- text("HARVEY MOON", 200,200);
-image(pg,0,0,width,height);
-blendMode(BLEND);
+
+// noStroke();
+// fill(200);
+// text("HARVEY MOON", 100,200,2);
+
+// fill(200);
+// //blendMode(BLEND);
+// 		stroke(0);
+// 		strokeWeight(1);
+// 		//fill(200);
+// 	for (var i = 0; i < fragments.length; i++) {  	
+//   	//print(fragments[i] == undefined)
+//   		fragments[i].moveDraw();
+//   	};
+
+
+//  fill(100);
+// text("HARVEY MOON", 100,200,2);
+
+
+
+//text("HARVEY MOON", 200,200);
+//image(pg,0,0,width,height);
+
+//blendMode(BLEND);
+
 
 
  if (avoidDist >= 100) {
@@ -170,21 +217,22 @@ Fragment.prototype.moveDraw = function(){
 
 	if(distA < avoidDist+20){
 		
+		//pg.noStroke();
+		// pg.quad(
+		// (this.a.x+this.dir.x)/6,
+		// (this.a.y+this.dir.y)/6,
+		// (this.b.x+this.dir.x)/6,
+		// (this.b.y+this.dir.y)/6,
+		// (this.c.x+this.dir.x)/6,
+		// (this.c.y+this.dir.y)/6,
+		// (this.d.x+this.dir.x)/6,
+		// (this.d.y+this.dir.y)/6,
+		// -1,-1,-1,-1);
 
-		pg.quad(
-		(this.a.x+this.dir.x)/4,
-		(this.a.y+this.dir.y)/4,
-		(this.b.x+this.dir.x)/4,
-		(this.b.y+this.dir.y)/4,
-		(this.c.x+this.dir.x)/4,
-		(this.c.y+this.dir.y)/4,
-		(this.d.x+this.dir.x)/4,
-		(this.d.y+this.dir.y)/4,
-		-1,-1,-1,-1);
 
-
+		//noFill();
 		stroke(0);
-		fill(200);
+
 		quad(this.a.x+this.dir.x,
 		this.a.y+this.dir.y,
 		this.b.x+this.dir.x,
@@ -197,28 +245,39 @@ Fragment.prototype.moveDraw = function(){
 
 
 
+
+
+
+
+
+
+
 	}
 	else{
 		
-		stroke(200);
+		stroke(240);
+		//noStroke();
 		if(distA < avoidDist+50){
 			stroke(0);
 		}
 		strokeWeight(1);
-		fill(200);
+		//fill(200);
 		
-		quad(this.a.x,this.a.y,this.b.x,this.b.y,this.c.x,this.c.y,this.d.x,this.d.y,1,1,1,1);
+		//
+		 quad(this.a.x,this.a.y,this.b.x,this.b.y,this.c.x,this.c.y,this.d.x,this.d.y,1,1,1,1);
 		
-		pg.quad(
-		this.a.x/4,
-		this.a.y/4,
-		this.b.x/4,
-		this.b.y/4,
-		this.c.x/4,
-		this.c.y/4,
-		this.d.x/4,
-		this.d.y/4,
-		1,1,1,1);
+		// // pg.strokeWeight(1);
+		// pg.stroke(0);
+		// pg.quad(
+		// this.a.x/6,
+		// this.a.y/6,
+		// this.b.x/6,
+		// this.b.y/6,
+		// this.c.x/6,
+		// this.c.y/6,
+		// this.d.x/6,
+		// this.d.y/6,
+		// 1,1,1,1);
 
 	}
 }
