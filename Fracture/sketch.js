@@ -70,6 +70,7 @@ mouseLoc.set(mouseX,mouseY);
 
 textSize(width/10);
 
+textAlign(LEFT,TOP);
 
 blendMode(BLEND);
 background(200);
@@ -77,7 +78,7 @@ background(200);
 noStroke();
 fill(0);
 
-text("HARVEY MOON", 50,150,2);
+text("HARVEY MOON", 50,50,2);
 
 
 
@@ -94,7 +95,7 @@ fill(255);
 stroke(0);
 fill(200,128)
 
-text("HARVEY MOON", 50,150,2);
+text("HARVEY MOON", 50,50,2);
 
 // blendMode(BLEND);
 // background(0);
