@@ -10,6 +10,7 @@ var smallDim = 0;
 var crackSharpness = .35; //0-.5 values;
 
 
+
 //var pg;
 
 var pi; 
@@ -63,7 +64,10 @@ function draw() {
 //take out the bg for cool effects!
 
 
-mouseLoc.set(mouseX,mouseY);
+
+mouseLoc.add((mouseX-mouseLoc.x)/20,(mouseY-mouseLoc.y)/20);
+
+
 // put drawing code here
 
 //pg.background(255);
