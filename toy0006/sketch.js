@@ -122,22 +122,43 @@ for(var i = 0; i < particles.length-1; i++){
 		//particles[i].acc.set(cos(noiseRot)*3,sin(noiseRot)*3);
 		//var pxG1 =  int((particles[i].nowPos.x/width) * iMax;
 		//var pyG1 =  (particles[i].nowPos.y/height) * jMax;
-		var pxG1 = int(map(particles[i].nowPos.x  ,  0,width,  0,iMax -1 ));
-		var pyG1 = int(map(particles[i].nowPos.y,  0,height,0,jMax-1));
-		//print(pxG1);
-		//print(nAng);
+
+		if(particles[i] != undefined && particles[i].nowPos != undefined){
+			var pxG1 = int(map(particles[i].nowPos.x  ,  0,width,  0,iMax -1 ));
+			var pyG1 = int(map(particles[i].nowPos.y,  0,height,0,jMax-1));
+			// console.log(pxG1);
+			// console.log(nAng);
+			
+
+			if(pxG1 < 0){
+				pxG1 = 0;
+			}
+			if(pxG1 > iMax){
+				pxG1 = iMax
+			}
+
+			if(pyG1 < 0){
+				pyG1 = 0;
+			}
+			if(pyG1 > jMax){
+				pyG1 = jMax
+			}
+
+
+			var nAng = f[pxG1][pyG1] + PI;
+			var nSpeed = s[pxG1][pyG1]* 15.5;
 		
-		var nAng = f[pxG1][pyG1] + PI;
-		var nSpeed = s[pxG1][pyG1]* 15.5;
-	
-		particles[i].acc.x += (cos(nAng) - particles[i].acc.x  ) /(nSpeed);
-		particles[i].acc.y += (sin(nAng)- particles[i].acc.y ) /(nSpeed) ;
-		
-		//particles[i].acc.set(cos(nAng)*nSpeed,sin(nAng)*nSpeed);
-		
-		particles[i].update();
-		particles[i].pSpeed += ((nSpeed*.005) - (particles[i].pSpeed/2));
-		particles[i].draw(  2 );
+			particles[i].acc.x += (cos(nAng) - particles[i].acc.x  ) /(nSpeed);
+			particles[i].acc.y += (sin(nAng)- particles[i].acc.y ) /(nSpeed) ;
+			
+			//particles[i].acc.set(cos(nAng)*nSpeed,sin(nAng)*nSpeed);
+			
+			particles[i].update();
+			particles[i].pSpeed += ((nSpeed*.005) - (particles[i].pSpeed/2));
+			particles[i].draw(  2 );
+		}
+
+
 	}
 
 	// 	if(particles[i].nowPos.x>=width-10 || particles[i].nowPos.x <= 10 || particles[i].lifeCount <= 0){
