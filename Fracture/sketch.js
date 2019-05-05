@@ -55,7 +55,9 @@ function setup() {
 	var p4 = createVector(0, windowHeight);// the fourth bottom left position of the first breakup
 	decoupe(9, p1, p2, p3, p4, centre ); // basically start breaking up the whole window with the mouse location and random color // first argument is the depth, kinda a power-of, use wisely
 
-randC = color(random(255),random(255),random(255));
+
+randC = color(random(100),random(255),random(255));
+
 }
 
 function draw() {
@@ -84,8 +86,8 @@ background(200);
 noStroke();
 fill(0);
 
-rect(25,25,width*.45,width*.3);
 
+//rect(25,25,width*.45,width*.3);
 
 
 
@@ -107,7 +109,7 @@ fill(255);
   	};
 
 stroke(0);
-fill(200,128)
+fill(200,100)
 
 text("HARVEY MOON", 50,50,2);
 
@@ -286,6 +288,5 @@ Fragment.prototype.moveDraw = function(){
 var getDistance = function( x1,  y1,  x2,  y2) {
   return sqrt(pow(x2-x1, 2)+pow(y2-y1, 2));
 }
-
 
 
